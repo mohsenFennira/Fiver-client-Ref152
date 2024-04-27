@@ -1,0 +1,76 @@
+
+  <div class="page-wrapper">
+      <div class="content">
+          <div class="row">
+              <div class="col-sm-4 col-3">
+                  <h4 class="page-title">Usuarios</h4>
+              </div>
+              <div class="col-sm-8 col-9 text-right m-b-20">
+                  <a routerLink="/admin/addUser" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Agregar usuario</a>
+              </div>
+          </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-border table-striped custom-table datatable mb-0">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Nacionalidad</th>
+              <th>Phone</th>
+              <th>Teléfono</th>
+              <th>estado</th>
+              <th class="text-right">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td *ngIf="user.genderType === 'MEN'; else notMen"> <img width="28" height="28" src="/assets/admin/img/men.png" class="rounded-circle m-r-5" alt="">{{ user.firstName }} {{ user.lastName }}</td>
+              <ng-template #notMen>
+               <td> <img width="28" height="28" src="/assets/admin/img/woman.jpeg" class="rounded-circle m-r-5" alt="">{{ user.firstName }} {{ user.lastName }}</td>
+              </ng-template>              <td>35</td>
+              <td>{{user.nationality}} </td>
+              <td>{{user.phoneNumber}}</td>
+              <td>{{user.email}}</td>
+              <td *ngIf="user.validated; else notActive">
+                <span class="custom-badge status-green">activo</span>
+              </td>
+              <ng-template #notActive>
+                <td>
+                  <span class="custom-badge status-red">inactivo</span>
+                </td>
+              </ng-template>
+              <td class="text-right">
+                <div class="dropdown dropdown-action">
+                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#" *ngIf="user.idUser" (click)="takeidToDelete(user.idUser)" data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i> Borrar</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+          </div>
+      </div>
+
+  </div>
+<div id="delete_patient" class="modal fade delete-modal" role="dialog">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-body text-center">
+      <img src="/assets/admin/img/sent.png" alt="" width="50" height="46">
+      <h3>¿Estás seguro de que deseas eliminar este usuario?</h3>
+      <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Cerca</a>
+        <button type="submit"  class="btn btn-danger" data-dismiss="modal" (click)="deleteUser(idUserTodelete)">Borrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+

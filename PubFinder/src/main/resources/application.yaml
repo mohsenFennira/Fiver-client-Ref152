@@ -1,0 +1,38 @@
+server:
+  port: 8085
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/pubFinder
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kushan.megabliss@gmail.com
+    password: qlzg cmfg xkrr fkcr
+    properties:
+      mail:
+        smtp:
+          auth: true
+        starttls:
+          enable: true
+token:
+  secret:
+    key: 357638792F423F4428472B4B6250655368566D597133743677397A2443264629
+super:
+  user:
+    mail: Pablogutsan06@gmail.com
+
+retry:
+  config:
+    maxAttempts: 3
+    backoffDelay: 3000

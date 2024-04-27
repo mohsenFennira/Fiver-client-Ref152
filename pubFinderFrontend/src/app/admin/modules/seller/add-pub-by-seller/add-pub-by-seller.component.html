@@ -1,0 +1,92 @@
+<div class="page-wrapper">
+  <div class="content">
+<div class="row">
+  <div class="col-lg-12">
+      <div class="card-box">
+          <h4 class="card-title">Add publication</h4>
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+          <form action="#" #addform="ngForm" (ngSubmit)="addPub(addform)" >
+              <div class="form-group row">
+                  <label class="col-form-label col-md-2">Pub Title</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" ngModel name="title">
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">Short Description</label>
+                <div class="col-md-10">
+                  <textarea rows="2" cols="2" class="form-control" ngModel name="shortdescription" placeholder="Enter text here"></textarea>
+                </div>
+                </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">Long Description</label>
+                <div class="col-md-10">
+                  <textarea rows="5" cols="5" class="form-control" ngModel name="longdescription" placeholder="Enter text here"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-form-label col-md-2">Radio</label>
+              <div class="col-md-10">
+                <div class="radio">
+                  <label>
+                      <input type="radio" name="radio" [(ngModel)]="selectedOption" value="Product" > Product
+                  </label>
+              </div>
+                  <div class="radio">
+                      <label>
+                          <input type="radio" name="radio"  [(ngModel)]="selectedOption" value="Clothes" > Clothes
+                      </label>
+                  </div>
+                  <div class="radio">
+                      <label>
+                          <input type="radio" name="radio"  [(ngModel)]="selectedOption" value="Foods" > Foods
+                      </label>
+                  </div>
+                  <div class="radio">
+                      <label>
+                          <input type="radio" name="radio"  [(ngModel)]="selectedOption" value="Services" > Services
+                      </label>
+                  </div>
+              </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-form-label col-md-2">Country</label>
+            <div class="col-md-10">
+              <select [(ngModel)]="selectedCountry" (change)="onCountryChange()" name="country" ngModel class="form-control" >
+                <option *ngFor="let country of countries" [value]="country.code">
+                  {{ country.name }}
+                </option>
+              </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-form-label col-md-2">Region</label>
+          <div class="col-md-10">
+            <select [(ngModel)]="selectedRegion" name="region" ngModel class="form-control">
+              <option *ngFor="let region of regions" [value]="region">
+                {{ region }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="image">Image:</label>
+          <input type="file" (change)="onFileSelected($event)" ngModel name="image" accept="image/*" required>
+        </div>
+
+      <div class="m-t-20 text-center">
+        <button class="btn btn-primary submit-btn" type="submit">Add publication</button>
+    </div>
+
+          </form>
+      </div>
+
+  </div>
+</div>
+</div>
+</div>

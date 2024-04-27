@@ -1,0 +1,51 @@
+<div class="page-wrapper">
+  <div class="content">
+      <div class="row">
+          <div class="col-sm-12">
+              <h4 class="page-title">Editar perfil</h4>
+          </div>
+      </div>
+      <form #addform="ngForm" (ngSubmit)="editProfile(addform)">
+          <div class="card-box">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="profile-basic">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group form-focus">
+                                      <label class="focus-label">Nombre de pila</label>
+                                      <input type="text" class="form-control floating"  [(ngModel)]="user.firstName" name="firstName">
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group form-focus">
+                                      <label class="focus-label">Apellido</label>
+                                      <input type="text" class="form-control floating"  [(ngModel)]="user.lastName" name="lastName">
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group form-focus">
+                                    <label class="focus-label">Correo </label>
+                                    <input type="email" class="form-control floating"  [(ngModel)]="user.email" name="email">
+                                </div>
+                            </div>
+                              <div class="col-md-6">
+                                <div class="form-group form-focus">
+                                    <label class="focus-label">Número de teléfono</label>
+                                    <div class="cal-icon ">
+                                        <input class="form-control floating " type="text"  [(ngModel)]="user.phoneNumber" name="phone">
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="text-center m-t-20">
+              <button class="btn btn-primary submit-btn" type="submit">Ahorrar</button>
+          </div>
+      </form>
+  </div>
+
+</div>

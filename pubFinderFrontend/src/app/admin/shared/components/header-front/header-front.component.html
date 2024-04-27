@@ -1,0 +1,55 @@
+ <!-- Navbar start -->
+
+ <div class="container-fluid fixed-top">
+  <div class="container topbar bg-primary d-none d-lg-block">
+      <div class="d-flex justify-content-between">
+          <div class="top-info ps-2">
+              <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">123 Street, New York</a></small>
+              <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email</a></small>
+          </div>
+          <div class="top-link pe-2">
+              <a href="#" class="text-white"><small class="text-white mx-2">política de privacidad</small>/</a>
+              <a href="#" class="text-white"><small class="text-white mx-2">Condiciones de uso</small>/</a>
+              <a href="#" class="text-white"><small class="text-white ms-2">Ventas y reembolsos</small></a>
+          </div>
+      </div>
+  </div>
+  <div class="container px-0">
+      <nav class="navbar navbar-light bg-white navbar-expand-xl">
+          <a href="index.html" class="navbar-brand"><h1 class="text-primary display-6">PubFinder</h1></a>
+          <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="fa fa-bars text-primary"></span>
+          </button>
+          <div class="collapse navbar-collapse bg-white " id="navbarCollapse" >
+            <div class="navbar-nav ms-auto" > <!-- Use ms-auto to push the nav items to the left -->
+                <a routerLink="/home" class="nav-item nav-link">Ingresar</a>
+                <a *ngIf="role=='SELLER'" routerLink="/seller/myPub" class="nav-item nav-link">Mis publicaciones</a>
+
+                <a *ngIf="!role" (click)="redirectToRegister()" style="cursor: pointer;" class="nav-item nav-link">Registrarse</a>
+            </div>
+            <div class="navbar-nav d-flex align-items-center">
+              <a (click)="redirectToLogin()" style="cursor: pointer;" class="btn btn-primary" *ngIf="role!='ADMIN'">Publicar oferta</a>
+              <a (click)="redirectToPubAdmin()" style="cursor: pointer;" class="btn btn-primary" *ngIf="role=='ADMIN'">Aceptar publicación</a>
+              <div class="dropdown" *ngIf="role" >
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img *ngIf="gender == 'MEN'; else notMen" class="rounded-circle" src="/assets/admin/img/men.png" width="30" >
+                  <ng-template #notMen>
+                    <img  class="rounded-circle" src="/assets/admin/img/woman.jpeg" width="30" >
+                  </ng-template>                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                  <li *ngIf="role=='SELLER'"><a class="dropdown-item" routerLink="/seller/profile">Manage Account</a></li>
+                  <li *ngIf="role=='ADMIN'"><a class="dropdown-item" routerLink="/admin/profile">Manage Account</a></li>
+                  <li><a class="dropdown-item" (click)="logout()" style="cursor: pointer;" href="/home" >Logout</a></li>
+
+                  <!-- Add more dropdown items as needed -->
+                </ul>
+              </div>
+
+
+            </div>
+
+          </div>
+      </nav>
+  </div>
+</div>
+<!-- Navbar End -->

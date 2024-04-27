@@ -1,0 +1,66 @@
+<div class="page-wrapper">
+  <div class="content">
+      <div class="row">
+          <div class="col-sm-7 col-6">
+              <h4 class="page-title">Mi perfil</h4>
+          </div>
+
+          <div class="col-sm-5 col-6 text-right m-b-30" *ngIf="user.roleTypes=='ADMIN'">
+              <a [routerLink]="['/admin/profile/editProfile/',user.idUser]" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Editar perfil</a>
+          </div>
+          <div class="col-sm-5 col-6 text-right m-b-30" *ngIf="user.roleTypes=='SELLER'">
+            <a [routerLink]="['/seller/profile/editProfile/',user.idUser]" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Editar perfil</a>
+        </div>
+      </div>
+      <div class="card-box profile-header">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="profile-view">
+                      <div class="profile-img-wrap">
+                          <div class="profile-img">
+                              <a href="#"><img class="avatar"*ngIf="user.genderType === 'MEN'; else notMen" src="/assets/admin/img/men.png" alt=""></a>
+                              <ng-template #notMen>
+                                <img class="avatar" src="/assets/admin/img/woman.jpeg" alt="" >
+                              </ng-template>
+                            </div>
+                      </div>
+                      <div class="profile-basic">
+                          <div class="row">
+                              <div class="col-md-5">
+                                  <div class="profile-info-left">
+                                      <h3 class="user-name m-t-0 mb-0">{{user.firstName}} {{user.lastName}}</h3>
+                                      <small class="text-muted">{{user.roleTypes}}</small>
+                                      <div class="staff-msg"><a href="chat.html" class="btn btn-primary">Enviar mensaje</a></div>
+                                  </div>
+                              </div>
+                              <div class="col-md-7">
+                                  <ul class="personal-info">
+                                      <li>
+                                          <span class="title">Teléfono:</span>
+                                          <span class="text"><a href="#">{{user.phoneNumber}}</a></span>
+                                      </li>
+                                      <li>
+                                          <span class="title">Correo electrónico:</span>
+                                          <span class="text"><a href="#">{{user.email}}</a></span>
+                                      </li>
+
+                                      <li>
+                                          <span class="title">Nacionalidad:</span>
+                                          <span class="text">{{user.nationality}}</span>
+                                      </li>
+                                      <li>
+                                          <span class="title">Género:</span>
+                                          <span class="text">{{user.genderType}}</span>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+</div>

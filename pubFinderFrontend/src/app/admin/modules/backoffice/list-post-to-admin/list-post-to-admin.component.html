@@ -1,0 +1,92 @@
+
+<div class="page-wrapper">
+  <div class="content">
+      <div class="row">
+          <div class="col-sm-4 col-3">
+              <h4 class="page-title">Publicaciones</h4>
+          </div>
+
+      </div>
+<div class="row">
+<div class="col-md-12">
+  <div class="table-responsive">
+    <table class="table table-border table-striped custom-table datatable mb-0">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo electrónico</th>
+          <th>Categoría</th>
+          <th>Descripción</th>
+          <th>Creado en</th>
+          <th>Estado</th>
+          <th class="text-right">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pubs">
+          <td *ngIf="p.user.genderType === 'MEN'; else notMen"> <img width="28" height="28" src="/assets/admin/img/men.png" class="rounded-circle m-r-5" alt="">{{ p.user.firstName }} {{ p.user.lastName }}</td>
+          <ng-template #notMen>
+           <td> <img width="28" height="28" src="/assets/admin/img/woman.jpeg" class="rounded-circle m-r-5" alt="">{{ p.user.firstName }} {{ p.user.lastName }}</td>
+          </ng-template>
+          <td>{{p.user.email}}</td>
+          <td>{{p.category}} </td>
+          <td>{{p.shortDescription}}</td>
+          <td>{{p.createdAt}}</td>
+          <td >
+            <div class="dropdown action-label" *ngIf="p.enabled; else notActive" >
+                <a  (click)="getid(p.idPublication)"class="custom-badge status-green dropdown-toggle " style="cursor: pointer;" data-toggle="dropdown" aria-expanded="false">
+                  Aprobado
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item"  (click)="updateStatusOfPub(p.idPublication,false)" style="cursor: pointer;">Pendiente</a>
+                </div>
+            </div>
+            <ng-template #notActive>
+            <div class="dropdown action-label">
+              <a class="custom-badge status-red dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" aria-expanded="false" (click)="getid(p.idPublication)">
+                Pendiente
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item"  (click)="updateStatusOfPub(p.idPublication,true)" style="cursor: pointer;">Aprobado</a>
+             </div>
+          </div>
+        </ng-template>
+        </td>
+
+          <td class="text-right">
+            <div class="dropdown dropdown-action">
+              <a href="#" class="action-icon dropdown-toggle" (click)=" takeidToDelete(p.idPublication)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#"   data-toggle="modal" data-target="#delete_patient" (click)="deletePost(idPostTodelete)"><i class="fa fa-trash-o m-r-5"></i> Borrar</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+      <mat-paginator [length]="totalItemsPub"
+      [pageSize]="pageSizePub"
+      (page)="onPub($event)">
+      </mat-paginator>
+    </table>
+  </div>
+</div>
+      </div>
+  </div>
+
+</div>
+<div id="delete_patient" class="modal fade delete-modal" role="dialog">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body text-center">
+  <img src="/assets/admin/img/sent.png" alt="" width="50" height="46">
+  <h3>¿Estás seguro de que deseas eliminar esta publicación?</h3>
+  <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Cerca</a>
+    <button type="submit"  class="btn btn-danger" data-dismiss="modal" >Borrar</button>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+

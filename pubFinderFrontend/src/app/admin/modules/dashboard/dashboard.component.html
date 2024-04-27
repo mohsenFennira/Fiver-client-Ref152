@@ -1,0 +1,177 @@
+<div class="page-wrapper">
+  <div class="content">
+      <div class="row">
+          <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="dash-widget">
+    <span class="dash-widget-bg1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+    <div class="dash-widget-info text-right">
+      <h3>{{statics.userCount}}</h3>
+      <span class="widget-title1">Usuarias <i class="fa fa-check" aria-hidden="true"></i></span>
+    </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="dash-widget">
+                  <span class="dash-widget-bg2"><i class="fa fa-pencil-square-o"></i></span>
+                  <div class="dash-widget-info text-right">
+                      <h3>{{statics.postsCount}}</h3>
+                      <span class="widget-title2">Publicaciones <i class="fa fa-check" aria-hidden="true"></i></span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="dash-widget">
+                  <span class="dash-widget-bg3"><i class="fa fa-key" aria-hidden="true"></i></span>
+                  <div class="dash-widget-info text-right">
+                      <h3>{{statics.enablePost}}</h3>
+                      <span class="widget-title3">Habilitar publicaciones <i class="fa fa-check" aria-hidden="true"></i></span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="dash-widget">
+                  <span class="dash-widget-bg4"><i class="fa fa-gavel" aria-hidden="true"></i></span>
+                  <div class="dash-widget-info text-right">
+                      <h3>{{statics.activeUsersCount}}</h3>
+                      <span class="widget-title4">Usuarios activos <i class="fa fa-check" aria-hidden="true"></i></span>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+<div class="row">
+<div class="col-12 col-md-6 col-lg-8 col-xl-8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title d-inline-block">Nuevas publicaciones</h4> <a routerLink="/admin/posts" class="btn btn-primary float-right">View all</a>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <thead class="d-none">
+            <tr>
+              <th>Nombre de usuario</th>
+              <th>Tipo de categoría</th>
+              <th>Creado </th>
+              <th class="text-right">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of pubs" >
+              <td style="min-width: 200px;" >
+                <a class="avatar" href="profile.html">B</a>
+                <h2><a href="profile.html">{{p.user.firstName}} {{p.user.lastName}} <span>{{p.user.nationality}}</span></a></h2>
+              </td>
+              <td>
+                <h5 class="time-title p-0">Categoría</h5>
+                <p>{{p.category}}</p>
+              </td>
+              <td>
+                <h5 class="time-title p-0">Creado</h5>
+                <p>{{p.createdAt}}</p>
+              </td>
+              <td class="text-right">
+                <div class="dropdown action-label" *ngIf="p.enabled; else notActive" >
+                    <a  class="custom-badge status-green dropdown-toggle " style="cursor: pointer;" data-toggle="dropdown" aria-expanded="false">
+                      Aprobado
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item"   style="cursor: pointer;">Pendiente</a>
+                    </div>
+                </div>
+                <ng-template #notActive>
+                <div class="dropdown action-label">
+                  <a class="custom-badge status-red dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" aria-expanded="false" >
+                    Pendiente
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item"   style="cursor: pointer;">Aprobado</a>
+                 </div>
+              </div>
+            </ng-template>
+            </td>
+            </tr>
+
+          </tbody>
+          <mat-paginator [length]="totalItemsPub"
+          [pageSize]="pageSizePub"
+          (page)="onPub($event)">
+          </mat-paginator>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+          <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+              <div class="card member-panel">
+    <div class="card-header bg-white">
+      <h4 class="card-title mb-0">Usuarios activos</h4>
+    </div>
+                  <div class="card-body">
+                      <ul class="contact-list">
+                          <li *ngFor="let u of activeUsers">
+                              <div class="contact-cont">
+                                  <div class="float-left user-img m-r-10">
+                                      <a href="profile.html" title="John Doe"><img src="/assets/admin/img/men.png" alt="" class="w-20 rounded-circle" width="50" height="50" alt=""><span class="status online"></span></a>
+                                  </div>
+                                  <div class="contact-info">
+                                      <span class="contact-name text-ellipsis">{{u.firstName}} {{u.lastName}}</span>
+                                      <span class="contact-date">MBBS, MD</span>
+                                  </div>
+                              </div>
+                          </li>
+
+                      </ul>
+                  </div>
+                  <mat-paginator [length]="totalItemsActiveUsers"
+                  [pageSize]="pageSizeActiveUsers"
+                  (page)="onPageChange($event)">
+             </mat-paginator>
+                  <div class="card-footer text-center bg-white">
+                      <a routerLink="/admin/users" class="text-muted">Ver todos los usuarios</a>
+                  </div>
+              </div>
+          </div>
+</div>
+<div class="row">
+<div class="col-12 col-md-6 col-lg-8 col-xl-8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title d-inline-block">Nuevos usuarios</h4> <a routerLink="/admin/users" class="btn btn-primary float-right">Ver todo</a>
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <table class="table mb-0 new-patient-table">
+          <tbody>
+            <tr *ngFor="let u of newUsers">
+
+              <td *ngIf="u.genderType === 'MEN'; else notMen"> <img width="28" height="28" src="/assets/admin/img/men.png" class="rounded-circle m-r-5" alt="">{{ u.firstName }} {{ u.lastName }}</td>
+              <ng-template #notMen>
+               <td> <img width="28" height="28" src="/assets/admin/img/woman.jpeg" class="rounded-circle m-r-5" alt="">{{ u.firstName }} {{ u.lastName }}</td>
+              </ng-template>
+              <td>{{u.email}}</td>
+              <td>{{u.phoneNumber}}</td>
+              <td *ngIf="u.validated; else notActive" button class="float-right">
+                <span class="custom-badge status-green">activo</span>
+              </td>
+              <ng-template #notActive>
+                <td button class="float-right">
+                  <span class="custom-badge status-red">inactivo</span>
+                </td>
+              </ng-template>
+            </tr>
+          </tbody>
+          <mat-paginator [length]="totalItemsUsers"
+          [pageSize]="pageSizeUsers"
+          (page)="onUsers($event)">
+     </mat-paginator>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+  </div>
+
+</div>

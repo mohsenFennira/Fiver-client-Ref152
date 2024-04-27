@@ -1,0 +1,108 @@
+<div class="page-wrapper">
+  <div class="content">
+      <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+              <h4 class="page-title">Agregar usuario</h4>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+              <form  #addform="ngForm" (ngSubmit)="addUser(addform)">
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Nombre de pila<span class="text-danger">*</span></label>
+                              <input class="form-control" type="text" ngModel name="firstName">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Apellido</label>
+                              <input class="form-control" type="text" ngModel name="lastName">
+                          </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Correo electrónico <span class="text-danger">*</span></label>
+                              <input class="form-control" type="email" ngModel name="email">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Contraseña</label>
+                              <input class="form-control" type="password" ngModel name="password">
+                          </div>
+                      </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Fecha de nacimiento</label>
+                   <input type="date" class="form-control" ngModel name="dateBirth">
+                </div>
+                      </div>
+                      <div class="col-sm-6">
+        <div class="form-group gender-select">
+          <label class="gen-label">Género:</label>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" name="gender" class="form-check-input" value="MEN" [(ngModel)]="selectedGender">Masculino
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" name="gender" class="form-check-input" value="WOMAN" [(ngModel)]="selectedGender">Femenina
+            </label>
+          </div>
+        </div>
+                      </div>
+                      <div class="col-sm-6">
+        <div class="row"><div class="col-sm-12">
+            <div class="form-group">
+              <label>País</label>
+              <select [(ngModel)]="selectedCountry" name="nationality" ngModel class="form-control" >
+                <option *ngFor="let country of countries" [value]="country.name">
+                  {{ country.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group role-select">
+            <label class="gen-label">Role:</label>
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" name="role" class="form-check-input" value="ADMIN" [(ngModel)]="selectedRole">Administrador
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" name="role" class="form-check-input" value="SELLER" [(ngModel)]="selectedRole">Seller
+              </label>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Teléfono </label>
+                              <input class="form-control" type="text" name="phone" ngModel placeholder="+216 26662264">
+                          </div>
+                      </div>
+
+                  </div>
+
+
+                  <div class="m-t-20 text-center">
+                      <button class="btn btn-primary submit-btn" type="submit">Crear usuario</button>
+                  </div>
+              </form>
+              <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

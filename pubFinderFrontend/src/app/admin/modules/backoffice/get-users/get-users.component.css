@@ -1,0 +1,16 @@
+.custom-snackbar {
+  background-color: green; /* Change to the desired background color */
+  color: white; /* Change to the desired text color */
+  position: fixed;
+  top: 0;
+  left: 50%; /* Adjust if needed */
+  transform: translateX(-50%); /* Center horizontally */
+  z-index: 1000; /* Ensure the snackbar appears above other content */
+}
+::ng-deep snack-bar-container.custom-class {
+  background: yellow;
+}
+
+::ng-deep .custom-class .mat-simple-snackbar {
+  color: green;
+}

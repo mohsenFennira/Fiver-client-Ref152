@@ -1,0 +1,45 @@
+<div class="header">
+  <div class="header-left">
+    <a href="/home" class="logo">
+      <img src="/assets/client/images/logo-64x64.png" width="35" height="35" alt=""> <span>PubFinder</span>
+    </a>
+  </div>
+  <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+  <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+  <ul class="nav user-menu float-right">
+
+    <li class="nav-item">
+      <a href="/home" class="nav-link">Home</a>
+  </li>
+
+    <li class="nav-item dropdown has-arrow">
+      <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+        <span class="user-img">
+          <img *ngIf="gender == 'MEN'; else notMen" class="rounded-circle" src="/assets/admin/img/men.png" width="24" >
+          <ng-template #notMen>
+            <img  class="rounded-circle" src="/assets/admin/img/woman.jpeg" width="24" >
+          </ng-template>
+          <span class="status online"></span>
+        </span>
+        <span style="margin-left: 10;"> {{firstName}} {{lastName}}</span>
+      </a>
+      <div class="dropdown-menu">
+        <a *ngIf="role=='ADMIN'" class="dropdown-item" routerLink="/admin/profile">Mi perfil</a>
+        <a *ngIf="role=='SELLER'" class="dropdown-item" routerLink="/seller/profile">Mi perfil</a>
+
+        <a class="dropdown-item" routerLink="/login" (click)="logout()">Cerrar sesión</a>
+      </div>
+    </li>
+    <!-- Move the button inside the navbar -->
+
+  </ul>
+  <div class="dropdown mobile-user-menu float-right">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+    <div class="dropdown-menu dropdown-menu-right">
+      <a class="dropdown-item" href="profile.html">My Profile</a>
+      <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+      <a class="dropdown-item" href="settings.html">Settings</a>
+      <a class="dropdown-item" href="login.html">Logout</a>
+    </div>
+  </div>
+</div>
